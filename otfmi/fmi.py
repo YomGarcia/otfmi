@@ -86,7 +86,9 @@ def simulate(
     if initialization_parameters is not None:
         apply_initialization_parameters(model, initialization_parameters)
 
-    return model.simulate(**kwargs)
+    opt = model.simulate_options()
+    opt['result_handling'] = "None"
+    return model.simulate(options=opt, **kwargs)
 
 
 def parse_kwargs_simulate(
